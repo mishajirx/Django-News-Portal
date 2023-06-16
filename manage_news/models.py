@@ -5,11 +5,10 @@ from django.db import models
 class News(models.Model):
     CATEGORIES = (
         ("education", 'образование'),
-        ('society', 'Общест'
-                    'во'),
+        ('society', 'Общество'),
         ('IT', 'IT')
     )
-    title = models.CharField(max_length=50, verbose_name='Крутой Заголовок')
+    title = models.CharField(max_length=50, verbose_name='Заголовок')
     image = models.ImageField(upload_to='image', verbose_name='Картинка', blank=True)
     content = models.TextField(max_length=1508, verbose_name='Текст новости')
     file_field = models.FileField(upload_to='file', verbose_name='Файл')
