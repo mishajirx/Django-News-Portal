@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+          crossorigin="anonymous">
+    <title>{{ title }}</title>
+</head>
+<body style="background-color: #effff7">
+
+{% if user.is_authenticated %}
+    <div>
+        <a href="/news/logout">Выйти из {{ user.username }}</a>
+    </div>
+{% else %}
+    <div>
+        <a href="/news/login"></a>
+    </div>
+{% endif %}
+
+
+
+{% block content %}
+    {% if user.is_authenticated %}
+        <table>
+            <tr>
+                <td>Header</td>
+                <td>Content</td>
+                <td>Tags</td>
+            </tr>
+            {% for item in news %}
+                <td><a href="edit_news/{{ item.id }}">{{ item.title }}</a></td>
+                <td>{{ item.content }}</td>
+                <td>{{ item.author }}</td>
+            {% endfor %}
+
+        </table>
+        <a href="add_news/">Добавить новость</a>
+    {% else %}
+        Нет контента
+    {% endif %}
+
+{% endblock %}
+
+
+</body>
+</html>

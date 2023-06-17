@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <form action="" method="post">
+        {% csrf_token %} {# токен, чтобы никто не подделал форму #}
+        {{ form.as_p }} {# вставить всё как параграф #}
+        <button type="submit">Войти</button>
+
+    </form>
+
+{% endblock %}
