@@ -32,13 +32,15 @@
                 <td>Tags</td>
             </tr>
             {% for item in news %}
-                <td><a href="edit_news/{{ item.id }}">{{ item.title }}</a></td>
-                <td>{{ item.content }}</td>
-                <td>{{ item.author }}</td>
+                <tr>
+                    <td><a href="edit_news/{{ item.id }}">{{ item.title }}</a></td>
+                    <td>{{ item.content }}</td>
+                    <td>{{ item.author }}</td>
+                </tr>
             {% endfor %}
 
         </table>
-        <a href="add_news/">Добавить новость</a>
+        <a href="add_news">Добавить новость</a>
     {% else %}
         Нет контента
     {% endif %}

@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.views.generic import TemplateView, FormView, View
+from django.views.generic import TemplateView, FormView, View, CreateView, UpdateView
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, logout
 from .models import News
@@ -38,3 +38,32 @@ class LogoutView(View):
     def get(self, request):
         logout(request)
         return redirect('/news/')
+
+
+class AddNewsView(CreateView):
+    fields = ['title', 'content', 'category', 'tags']
+    model = News
+    template_name = 'add_edit_news.html'
+    success_url = '/news/'
+
+    def form_valid(self, form):
+        self.object = form.save(commit=False)
+        self.object.author = self.request.user
+        self.object.save()
+        for tag in form.cleaned_data['tags']:
+            self.object.tags.add(tag.id)
+        self.object.save()
+
+        return redirect(self.success_url)
+
+
+class EditNewsView(UpdateView):
+    model = News
+    success_url = '/news/'
+    template_name = 'add_edit_news.html'
+
+    fields = ['title', 'content', 'category', 'tags']
+
+    def get_object(self, queryset=None):
+        obj = News.objects.get(id=self.kwargs['pk'])
+        return obj
