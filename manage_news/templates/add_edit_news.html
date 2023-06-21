@@ -2,8 +2,12 @@
 {% block content %}
     <form action="" method="post">
         {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Save</button>
+
+        <div class="container" style="align-content: center">
+            <h1>Add/Edit News</h1>
+            {{ form.as_p }}
+            <button type="submit">Save</button>
+        </div>
     </form>
 
 {% endblock %}

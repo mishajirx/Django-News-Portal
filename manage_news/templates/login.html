@@ -4,28 +4,29 @@
 
 {% block content %}
 
+
+
     <form action="" method="post">
         {% csrf_token %} {# токен, чтобы никто не подделал форму #}
-        <table>
-            <tr>
 
-                <td>
-                    <div class="form-group" style="background-color: red">
-                        {#            first_name is the name by which first name is created in django forms#}
-                        {% render_field form.username class="form-control" placeholder="User name" type="text" %}
-                    </div>
-                </td>
+        <div class="container" style="align-content: center">
+            <h1>Sign Up / Sign In</h1>
 
-                <td>
-                    <div class="form-group" style="background-color: red">
-                        {#            // password is the default name of password in django forms#}
-                        {% render_field form.password type="password" class="form-control" id="exampleInputPassword" placeholder="Password" %}
-                    </div>
-                </td>
-            </tr>
-        </table>
-        <button type="submit">Войти</button>
+            <p>
+                Enter your name
+                {% render_field form.username class="form-control" placeholder="User name" type="text" %}
+            </p>
+
+            <p>
+                Password
+                {% render_field form.password type="password" class="form-control" id="exampleInputPassword" placeholder="Password" %}
+            </p>
+            <button type="submit" style="align-items: center">Enter</button>
+        </div>
 
     </form>
+
+    <br><br><br><br><br><br><br><br><br><br><br><br><br>
+
 
 {% endblock %}

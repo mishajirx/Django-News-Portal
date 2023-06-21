@@ -1,52 +1,58 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet"
-          href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
-          crossorigin="anonymous">
-    <title>{{ title }}</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trend Teller</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 </head>
-<body style="background-color: #effff7">
+<body>
 
-{% if user.is_authenticated %}
-    <div>
-        <a href="/news/logout">Выйти из {{ user.username }}</a>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="/news/">News Portal</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                {% if user.is_authenticated %}
+                    <div>
+                        <a href="/news/logout/" style="font-size: large">{{ user.username }}</a>
+                    </div>
+                {% else %}
+                    <div>
+                        <a href="/news/login/">Sign Up / Sign In</a>
+                    </div>
+                {% endif %}
+            </li>
+
+        </ul>
     </div>
-{% else %}
-    <div>
-        <a href="/news/login">Войти</a>
-    </div>
-{% endif %}
-
-
+</nav>
 
 {% block content %}
-    {% if user.is_authenticated %}
-        <table>
-            <tr>
-                <td>Header</td>
-                <td>Content</td>
-                <td>Tags</td>
-            </tr>
-            {% for item in news %}
-                <tr>
-                    <td><a href="edit_news/{{ item.id }}">{{ item.title }}</a></td>
-                    <td>{{ item.content }}</td>
-                    <td>{{ item.author }}</td>
-                </tr>
-            {% endfor %}
 
-        </table>
-        <a href="add_news">Add news</a>
-    {% else %}
-        Nothing to show
-    {% endif %}
+
 
 {% endblock %}
 
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <h2>About Us</h2>
+            <p>Trend Teller - your best service to publish your article</p>
+        </div>
+    </div>
+</div>
 
+<footer class="bg-dark text-white text-center p-3">
+    <p>&copy; 2023 Trend Teller</p>
+</footer>
+
+<!-- Bootstrap JS -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </body>
 </html>

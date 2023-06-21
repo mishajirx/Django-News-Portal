@@ -7,9 +7,15 @@ from .models import News
 
 # Create your views here.
 
-
 class MainView(TemplateView):
-    template_name = 'base.html'
+    template_name = 'homepage.html'
+
+    def get(self, request):
+        return render(request, self.template_name)
+
+
+class ProfileView(TemplateView):
+    template_name = 'profile.html'
 
     def get(self, request):
         if request.user.is_authenticated:
