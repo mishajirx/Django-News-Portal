@@ -1,4 +1,4 @@
-# Django News Portal
+# Trend Teller - News portal for you
 
 ## Amazing new portal written with django framework
 
